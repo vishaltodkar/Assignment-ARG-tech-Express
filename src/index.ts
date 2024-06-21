@@ -14,8 +14,7 @@ app.use(bodyParser.json());
 
 app.post('/generate-token', (req: Request, res: Response) => {
   console.log("req.body",req.body)
-  const { userId } = req.body; // Assuming you receive userId from request body
-
+  const { userId } = req.body; 
   if (!userId) {
       return res.status(400).json({ message: 'User ID is required' });
   }
@@ -27,12 +26,8 @@ app.post('/generate-token', (req: Request, res: Response) => {
       res.status(500).json({ message: 'Failed to generate token' });
   }
 });
-// Connect Database
 connectDB();
 
-// Middleware
-
-// Routes
 app.use('/api/books', require('./routes/bookRoutes'));
 
 const PORT = process.env.PORT || 5000;
